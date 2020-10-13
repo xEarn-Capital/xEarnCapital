@@ -1,5 +1,12 @@
 const config = {
   infuraProvider: 'https://mainnet.infura.io/v3/62bb6bf457034ced8455192eee1a544a',
+  xearnpoolone:'',
+  xearnpooltwo:'',
+  xearnpoolthree:'',
+  xearntoken:'0x00920fc4b6698e5c7F144C6Ee16cB3ed9d238142',
+  qrxuniswaptoken:'0xF227e97616063A0EA4143744738f9def2aa06743',
+  xrnuniswaptoken:'0xa1A47F7dD0EcCd782142816601fF2A6ba57808F4',
+  usdttoken:'0xdAC17F958D2ee523a2206206994597C13D831ec7',
   uniswapRewardsAddres: '',
   uniswapRewardsABI:[
     {
