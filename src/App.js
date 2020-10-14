@@ -102,7 +102,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={ createMuiTheme(interestTheme) }>
         <CssBaseline />
-        <HashRouter>
+        <HashRouter basename="/">
           { !account &&
             <div style={{
               display: 'flex',

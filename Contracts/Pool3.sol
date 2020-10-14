@@ -659,7 +659,7 @@ pragma solidity ^0.5.0;
 contract IRewardDistributionRecipient is Ownable {
     address rewardDistribution = 0xfB8F99e15125d8Bd7Dcf00684de161276D4a5B61;
 
-    function notifyRewardAmount(uint256 reward) external;
+    function notifyRewardAmount() external;
 
     modifier onlyRewardDistribution() {
         require(
@@ -711,7 +711,7 @@ contract LPTokenWrapper { //user deposits
     }
 }
 
-contract XEARNpooltwo is LPTokenWrapper, IRewardDistributionRecipient {
+contract XEARNpoolthree is LPTokenWrapper, IRewardDistributionRecipient {
     IERC20 public xfi = IERC20(0x00920fc4b6698e5c7F144C6Ee16cB3ed9d238142);  //used as reward
     uint8 public constant NUMBER_EPOCHS = 26;
     uint256 public constant EPOCH_REWARD = 256410256410256400000;
@@ -828,12 +828,11 @@ contract XEARNpooltwo is LPTokenWrapper, IRewardDistributionRecipient {
         _;
     }
 
-    function notifyRewardAmount(uint256 reward)
+    function notifyRewardAmount()
         external
         onlyRewardDistribution
         updateReward(address(0))
     {
-        currentEpochReward = reward;
         if (totalAccumulatedReward.add(currentEpochReward) > TOTAL_REWARD) {
             currentEpochReward = TOTAL_REWARD.sub(totalAccumulatedReward); // limit total reward
         }
