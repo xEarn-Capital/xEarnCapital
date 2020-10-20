@@ -270,6 +270,7 @@ class RewardPools extends Component {
         onClick={ () => { if(rewardPool.tokens.length > 0) { this.navigateStake(rewardPool) } } }
       >
         <Typography variant={ 'h4'}>{t('RewardPools.Open')}</Typography>
+      
       </Button>
     </div>)
   }

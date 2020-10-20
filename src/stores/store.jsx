@@ -177,7 +177,7 @@ class Store {
               rewardsAddress: config.xearnpoolthree,
               rewardsABI: config.xearnrewardsabi,
               rewardsSymbol: 'XRN',
-              decimals: 18,
+              decimals: 6,
               balance: 0,
               stakedBalance: 0,
               rewardsAvailable: 0,
@@ -480,7 +480,7 @@ class Store {
 
     try {
       var earned = await erc20Contract.methods.earned(account.address).call({ from: account.address });
-      earned = parseFloat(earned)/10**asset.decimals
+      earned = web3.utils.fromWei(earned.toString(),"ether");
       callback(null, parseFloat(earned))
     } catch(ex) {
       return callback(ex)
