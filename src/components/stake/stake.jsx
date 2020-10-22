@@ -369,11 +369,11 @@ class Stake extends Component {
         <div className={ classes.overview }>
           <div className={ classes.overviewField }>
             <Typography variant={ 'h3' } className={ classes.overviewTitle }>{t('Stake.YourBalance')}</Typography>
-            <Typography variant={ 'h2' } className={ classes.overviewValue }>{ pool.tokens[0].balance ? pool.tokens[0].balance.toFixed(2) : "0" }  { pool.tokens[0].symbol }</Typography>
+            <Typography variant={ 'h2' } className={ classes.overviewValue }>{ Number(pool.tokens[0].balance) ? Number(pool.tokens[0].balance).toFixed(2) : "0" }  { pool.tokens[0].symbol }</Typography>
           </div>
           <div className={ classes.overviewField }>
             <Typography variant={ 'h3' } className={ classes.overviewTitle }>{t('Stake.CurrentlyStaked')}</Typography>
-            <Typography variant={ 'h2' } className={ classes.overviewValue }>{ pool.tokens[0].stakedBalance ? pool.tokens[0].stakedBalance.toFixed(2) : "0" }</Typography>
+            <Typography variant={ 'h2' } className={ classes.overviewValue }>{ Number(pool.tokens[0].stakedBalance) ? Number(pool.tokens[0].stakedBalance).toFixed(6) : "0" }</Typography>
           </div>
           <div className={ classes.overviewField }>
             <Typography variant={ 'h3' } className={ classes.overviewTitle }>{t('Stake.RewardsAvailable')}</Typography>
@@ -410,7 +410,7 @@ class Stake extends Component {
     return (
       <div className={ classes.actions }>
         <div className={ classes.actionContainer}>
-         {/* <Button
+         { <Button
             fullWidth
             className={ classes.primaryButton }
             variant="outlined"
@@ -419,7 +419,7 @@ class Stake extends Component {
             onClick={ () => { this.navigateInternal('stake') } }
             >
             <Typography className={ classes.stakeButtonText } variant={ 'h4'}>{t('Stake.StakeTokens')}</Typography>
-         </Button>*/ }
+         </Button> }
         </div>
         <div className={ classes.actionContainer}>
           <Button
@@ -655,7 +655,7 @@ class Stake extends Component {
   }
 
   setAmount = (id, type, balance) => {
-    const bal = (Math.floor((balance === '' ? '0' : balance)*1000000)/1000000).toFixed(6)
+    let bal = balance;
     let val = []
     val[id + '_' + type] = bal
     this.setState(val)

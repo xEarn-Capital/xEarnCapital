@@ -1,12 +1,16 @@
 const config = {
   infuraProvider: 'https://mainnet.infura.io/v3/62bb6bf457034ced8455192eee1a544a',
-  xearnpoolone:'0x2772C5abfd8A9A2cd25D243D2D594855301777bD',
-  xearnpooltwo:'0xBAb98B42eB849FF90F892a2129fFC3aa7EA18E17',
-  xearnpoolthree:'0x76B761930bdA268760A172332Fa74a8DBCB45734',
-  xearntoken:'0x00920fc4b6698e5c7F144C6Ee16cB3ed9d238142',
+  xearnpoolone:'0xdD6ED4951F2B42C2134539D090EE945c59e8847f',
+  xearnpooltwo:'0x781967CBb9Efc221280352c7Df5Bc7A6bd07d131',
+  xearnpoolthree:'0x740Ffa21C05958285dfb648830A19a5C739D4aB7',
+  xearnpoolfour:'0xBE7253A6e884421891c210337aB941cAE26c3453',
+  xearnpoolfive:'0xaB8cFD5e7A8638A8a92Dffb0CD5244Dcdf5AE6ad',
+  xearntoken:'0xe53940db3CE1cCC33375129b6E211b39221035E4',
   qrxuniswaptoken:'0xF227e97616063A0EA4143744738f9def2aa06743',
-  xrnuniswaptoken:'0xa1A47F7dD0EcCd782142816601fF2A6ba57808F4',
+  xrnuniswaptoken:'0x058CE49Da256a78B47C055bE1fd9b409e21311f1',
+  qrxxrnuniswaptoken:'0xD82183c4E132686Bc460B9D67ce20177fef4FAA2',
   usdttoken:'0xdAC17F958D2ee523a2206206994597C13D831ec7',
+  usdctoken:'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
   uniswapRewardsAddres: '',
   xearnrewardsabi:[
     {

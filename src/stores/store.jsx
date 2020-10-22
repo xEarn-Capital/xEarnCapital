@@ -116,7 +116,7 @@ class Store {
           id: 'xearn / eth UNISWAP LP',
           name: 'xearn / eth UNISWAP LP',
           website: 'UNISWAP XRN / ETH',
-          link: 'https://app.uniswap.org/#/add/0x00920fc4b6698e5c7F144C6Ee16cB3ed9d238142/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+          link: 'https://app.uniswap.org/#/add/0xe53940db3CE1cCC33375129b6E211b39221035E4/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
           YieldCalculatorLink: "", 
           depositsEnabled: true,
           tokens: [
@@ -163,9 +163,9 @@ class Store {
         {
           id: 'USDT Pool',
           name: 'USDT Pool',
-          website: 'xearn.capital',
+          website: 'farm.xearn.capital',
           link: 'https://app.uniswap.org/#/add/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/0xCa22d16A50F69cE61093D1f18B21b8b4423b0D6D',
-          YieldCalculatorLink: "https://yieldfarming.yyfi.finance/yyfi/yyfi_dai/", 
+          YieldCalculatorLink: "", 
           depositsEnabled: true,
           tokens: [
             {
@@ -178,6 +178,54 @@ class Store {
               rewardsABI: config.xearnrewardsabi,
               rewardsSymbol: 'XRN',
               decimals: 6,
+              balance: 0,
+              stakedBalance: 0,
+              rewardsAvailable: 0,
+            }
+          ]
+        },
+        {
+          id: 'USDC Pool',
+          name: 'USDC Pool',
+          website: 'farm.xearn.capital',
+          link: '',
+          YieldCalculatorLink: "", 
+          depositsEnabled: true,
+          tokens: [
+            {
+              id: 'USDC',
+              address: config.usdctoken,
+              symbol: 'USDC',
+              abi: config.erc20ABI,
+              decimals: 6,
+              rewardsAddress: config.xearnpoolfour,
+              rewardsABI: config.xearnrewardsabi,
+              rewardsSymbol: 'XRN',
+              decimals: 6,
+              balance: 0,
+              stakedBalance: 0,
+              rewardsAvailable: 0,
+            }
+          ]
+        },
+        {
+          id: 'QuiverX/xEarn UNISWAP LP',
+          name: 'QuiverX/xEarn UNISWAP LP',
+          website: 'farm.xearn.capital',
+          link: 'https://app.uniswap.org/#/add/0x6e0daDE58D2d89eBBe7aFc384e3E4f15b70b14D8/0xe53940db3CE1cCC33375129b6E211b39221035E4',
+          YieldCalculatorLink: "", 
+          depositsEnabled: true,
+          tokens: [
+            {
+              id: 'UNI-LP',
+              address: config.qrxxrnuniswaptoken,
+              symbol: 'UNI',
+              abi: config.erc20ABI,
+              decimals: 18,
+              rewardsAddress: config.xearnpoolfive,
+              rewardsABI: config.xearnrewardsabi,
+              rewardsSymbol: 'XRN',
+              decimals: 18,
               balance: 0,
               stakedBalance: 0,
               rewardsAvailable: 0,
@@ -456,8 +504,13 @@ class Store {
 
     try {
       var balance = await erc20Contract.methods.balanceOf(account.address).call({ from: account.address });
-      balance = parseFloat(balance)/10**asset.decimals
-      callback(null, parseFloat(balance))
+      let unit = "ether";
+      if(asset.decimals == 6) {
+         unit = "mwei";
+      }
+      balance = web3.utils.fromWei(balance.toString(),unit);
+    //  balance = parseFloat(balance)/10**asset.decimals
+      callback(null, balance)
     } catch(ex) {
       return callback(ex)
     }
@@ -468,8 +521,12 @@ class Store {
 
     try {
       var balance = await erc20Contract.methods.balanceOf(account.address).call({ from: account.address });
-      balance = parseFloat(balance)/10**asset.decimals
-      callback(null, parseFloat(balance))
+      let unit = "ether";
+      if(asset.decimals == 6) {
+        unit = "mwei";
+      }
+      balance = web3.utils.fromWei(balance.toString(),unit);
+      callback(null, balance)
     } catch(ex) {
       return callback(ex)
     }
