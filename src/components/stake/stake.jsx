@@ -399,6 +399,7 @@ class Stake extends Component {
 
         { snackbarMessage && this.renderSnackbar() }
         { loading && <Loader /> }
+        <Typography style={{marginTop:"35px"}} variant='h4' className={ classes.poolName2 }>Time until epoch switch: { this.forHumans(pool.tokens[0].nextHalving )} </Typography>
       </div>
     )
   }
@@ -459,7 +460,27 @@ class Stake extends Component {
         </div>
         { (pool.id === 'Governance' && voteLockValid) && <Typography variant={'h4'} className={ classes.voteLockMessage }>{t('Stake.UnstakingTokens')}{voteLock}</Typography>}
       </div>
+      
     )
+  }
+
+  forHumans = (seconds) =>  {
+    const levels = [
+      [Math.floor(seconds / 31536000), 'years'],
+      [Math.floor((seconds % 31536000) / 86400), 'days'],
+      [Math.floor(((seconds % 31536000) % 86400) / 3600), 'hours'],
+      [Math.floor((((seconds % 31536000) % 86400) % 3600) / 60), 'minutes'],
+      [Math.floor((((seconds % 31536000) % 86400) % 3600) % 60), 'seconds'],
+    ]
+    let returntext = ''
+  
+    for (var i = 0, max = levels.length; i < max; i++) {
+      if (levels[i][0] === 0) continue
+      returntext +=
+        ' ' + levels[i][0] + ' ' + (levels[i][0] === 1 ? levels[i][1].substr(0, levels[i][1].length - 1) : levels[i][1])
+    }
+  
+    return returntext.trim()
   }
 
   navigateInternal = (val) => {

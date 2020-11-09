@@ -147,9 +147,15 @@ const styles = theme => ({
     paddingBottom: '20px',
     color: colors.text
   },
+  poolName2: {
+    color: colors.text
+  },
   tokensList: {
     color: colors.darkGray,
     paddingBottom: '20px',
+  },
+  tokensList2: {
+    color: colors.darkGray,
   },
   poolWebsite: {
     color: colors.darkGray,
@@ -199,6 +205,25 @@ class RewardPools extends Component {
 
   closeAlert = () => {
     this.setState({open: false})
+  }
+
+   forHumans = (seconds) =>  {
+    const levels = [
+      [Math.floor(seconds / 31536000), 'years'],
+      [Math.floor((seconds % 31536000) / 86400), 'days'],
+      [Math.floor(((seconds % 31536000) % 86400) / 3600), 'hours'],
+      [Math.floor((((seconds % 31536000) % 86400) % 3600) / 60), 'minutes'],
+      [Math.floor((((seconds % 31536000) % 86400) % 3600) % 60), 'seconds'],
+    ]
+    let returntext = ''
+  
+    for (var i = 0, max = levels.length; i < max; i++) {
+      if (levels[i][0] === 0) continue
+      returntext +=
+        ' ' + levels[i][0] + ' ' + (levels[i][0] === 1 ? levels[i][1].substr(0, levels[i][1].length - 1) : levels[i][1])
+    }
+  
+    return returntext.trim()
   }
 
   render() {
@@ -269,9 +294,11 @@ class RewardPools extends Component {
         color="secondary"
         onClick={ () => { if(rewardPool.tokens.length > 0) { this.navigateStake(rewardPool) } } }
       >
-        <Typography variant={ 'h4'}>{t('RewardPools.Open')}</Typography>
-      
+        <Typography variant={ 'h4'}>{t('RewardPools.Open')}</Typography> 
+       
       </Button>
+      <Typography varian='h4' className={ classes.tokensList2 } align='center'>Total rewards claimed: </Typography>
+      <Typography style={{marginBottom:"10px"}} variant='h4' className={ classes.poolName2 }>{ rewardPool.tokens[0].rewardsClaimed } XRN</Typography>
     </div>)
   }
 
